@@ -1,0 +1,64 @@
+{
+  "type": "module",
+  "private": "true",
+  "name": "@monkestation/github-pr-relay",
+  "version": "1.0.0-alpha",
+  "description": "Basic github PR relay, using a Hibiki base.",
+  "license": "zlib",
+  "author": "Chen Marisa <flleeppyybusiness@gmail.com> (https://fleepy.tv)",
+  "homepage": "https://github.com/Monkestation/github-pr-relay#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Monkestation/github-pr-relay.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Monkestation/github-pr-relay/issues"
+  },
+  "engines": {
+    "node": ">=20.14.0",
+    "pnpm": ">=8.15.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "cross-env NODE_ENV=development tsx watch --ignore src/ParsedDatabaseSchema.ts src/index.ts",
+    "lint": "cross-env eslint --fix .",
+    "format": "cross-env prettier --write './**/**/*.{js,json,md,ts,yml}'",
+    "prebuild": "cross-env rimraf ./dist/",
+    "postbuild": "pnpm build:static",
+    "start": "pnpm build && cross-env NODE_ENV=production node --no-warnings ./dist/src/index.js",
+    "test": "cross-env tsc --noEmit && eslint . && prettier --c ."
+  },
+  "dependencies": {
+    "@discordjs/rest": "^2.3.0",
+    "@fastify/cors": "^9.0.1",
+    "@fastify/static": "^7.0.4",
+    "@octokit/rest": "^21.0.1",
+    "discord-api-types": "^0.37.92",
+    "discord.js": "^14.15.3",
+    "fastify": "^4.28.1",
+    "knex": "^3.1.0",
+    "mysql2": "^3.10.3",
+    "pino": "^9.3.1",
+    "pino-pretty": "^11.2.1"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.8",
+    "erlpack": "github:discord/erlpack",
+    "utf-8-validate": "^5.0.10",
+    "zlib-sync": "^0.1.9"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.1.1",
+    "@types/node": "^20.14.10",
+    "autoprefixer": "^10.4.19",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
+    "eslint-config-ks": "^5.0.4",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.16.2",
+    "typescript": "5.4.3"
+  }
+}
