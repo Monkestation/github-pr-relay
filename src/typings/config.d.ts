@@ -12,9 +12,12 @@ interface HibikiConfig {
 
   githubToken: string;
 
-  guildId: string
-
-  forumId: string
+  githubManagerConfig: {
+    guildId: string;
+    forumId: string;
+    // Example: blahlbah/myrepo
+    repoString: string;
+  };
 
   // The default locale to use
   defaultLocale: HibikiLocaleCode;

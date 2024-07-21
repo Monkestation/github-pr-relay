@@ -12,3 +12,5 @@ export const slashCommandNameRegex = /^[-_\p{L}\p{N}\p{sc=Deva}\p{sc=Thai}]{1,32
 
 // The version of Hibiki currently running
 export const hibikiVersion = process.env.npm_package_version ?? "development";
+
+export const hibikiUserAgent = `monkeprrelay/${hibikiVersion} (https://github.com/Monkestation/github-pr-relay)`;

@@ -11,5 +11,5 @@
  */
 
 export function createFullTimestamp(time: Date) {
-  return `<t:${Math.floor(time.getTime() / 1000)}:F>`;
+  return `<t:${Math.floor(time.getTime() / 1000).toString()}:F>`;
 }

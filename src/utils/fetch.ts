@@ -4,7 +4,7 @@
  * @module fetch
  */
 
-import { hibikiVersion } from "./constants.js";
+import { hibikiUserAgent } from "./constants.js";
 
 /**
  * Wraps around fetch() and adds our User-Agent, etc
@@ -20,7 +20,7 @@ export default async (url: string, options?: RequestInit): Promise<Response | un
       ...options,
       headers: {
         ...options?.headers,
-        "User-Agent": `monkeprrelay/${hibikiVersion} (https://github.com/Monkestation/github-pr-relay)`,
+        "User-Agent": hibikiUserAgent,
       },
     });
 

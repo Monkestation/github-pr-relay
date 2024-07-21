@@ -4,19 +4,21 @@
  * @module loader
  */
 
+import type { PathLike } from "node:fs";
+import fs from "node:fs";
+import path from "node:path";
+
+import { REST } from "@discordjs/rest";
+import type { Collection } from "discord.js";
+import { Routes } from "discord-api-types/v10";
+
 import type { HibikiClient } from "../classes/Client.js";
 import type { CallableHibikiCommand } from "../classes/Command.js";
 import type { CallableHibikiEvent, HibikiEvent } from "../classes/Event.js";
 import type { HibikiLogger } from "../classes/Logger.js";
-import type { Collection } from "discord.js";
-import type { PathLike } from "node:fs";
 import { moduleFiletypeRegex, slashCommandNameRegex } from "./constants.js";
 import { logger } from "./logger.js";
 import { checkIntents } from "./validator.js";
-import { REST } from "@discordjs/rest";
-import { Routes } from "discord-api-types/v10";
-import fs from "node:fs";
-import path from "node:path";
 
 /**
  * Loads all Hibiki commands
@@ -51,7 +53,7 @@ export async function loadCommands(bot: HibikiClient, directory: PathLike): Prom
     if (!commandToLoad) continue;
     const splitPath = directory.toString().split("/");
     const name = file.name.split(moduleFiletypeRegex)[0].toLowerCase();
-    const category = splitPath[splitPath.length - 1];
+    const category = splitPath.at(-1);
 
     // Loads the command
     const command = new commandToLoad(bot, name, category);
@@ -120,9 +122,7 @@ export async function loadEvents(bot: HibikiClient, directory: PathLike, isLogge
 function subscribeToEvents(bot: HibikiClient, events: Collection<string, HibikiEvent | HibikiLogger>) {
   for (const eventToListenOn of events.values()) {
     for (const individualEvent of eventToListenOn.events) {
-      bot.on(individualEvent, (...eventParameters) =>
-        eventToListenOn.run(individualEvent, ...eventParameters),
-      );
+      bot.on(individualEvent, (...eventParameters) => eventToListenOn.run(individualEvent, ...eventParameters));
     }
   }
 }

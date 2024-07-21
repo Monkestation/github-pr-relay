@@ -4,9 +4,10 @@
  * @module HibikiCommand
  */
 
-import type { HibikiClient } from "./Client.js";
-import type { APIApplicationCommandOption } from "discord-api-types/v10";
 import type { ChatInputCommandInteraction, Message } from "discord.js";
+import type { APIApplicationCommandOption } from "discord-api-types/v10";
+
+import type { HibikiClient } from "./Client.js";
 
 /**
  * Hibiki command data in JSON form for slash command registration
@@ -63,7 +64,11 @@ export abstract class HibikiCommand {
    * @param category The command category (matches the directory)
    */
 
-  protected constructor(protected bot: HibikiClient, public name: string, public category: string) {}
+  protected constructor(
+    protected bot: HibikiClient,
+    public name: string,
+    public category: string,
+  ) {}
 
   /**
    * Converts a Hibiki command to Discord API-compatible JSON

@@ -24,7 +24,10 @@ export abstract class HibikiEvent {
    * @param name The event name, matching the filename
    */
 
-  constructor(protected bot: HibikiClient, public name: string) {}
+  constructor(
+    protected bot: HibikiClient,
+    public name: string,
+  ) {}
 
   /**
    * Runs an event

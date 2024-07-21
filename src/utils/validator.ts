@@ -4,7 +4,7 @@
  * @module validator
  */
 
-import { GatewayIntentsString, BitFieldResolvable, ClientOptions, IntentsBitField } from "discord.js";
+import { BitFieldResolvable, ClientOptions, GatewayIntentsString, IntentsBitField } from "discord.js";
 
 /**
  * Checks to see if an intent is in config.options

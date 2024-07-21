@@ -4,9 +4,10 @@
  * @module HibikiInteractionEvent
  */
 
-import { EmbedBuilder, type ChatInputCommandInteraction } from "discord.js";
-import { logger } from "../utils/logger.js";
+import { type ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
+
 import { HibikiEvent } from "../classes/Event.js";
+import { logger } from "../utils/logger.js";
 
 export class HibikiInteractionEvent extends HibikiEvent {
   events: HibikiEventEmitter[] = ["interactionCreate"];
@@ -35,16 +36,12 @@ export class HibikiInteractionEvent extends HibikiEvent {
       });
       await command.runWithInteraction?.(interaction);
     } catch (error) {
-      logger.error(
-        `An error occured running the command ${command.name}\n${(error as Error).stack}`,
-      );
+      logger.error(`An error occured running the command ${command.name}\n${(error as Error).stack}`);
       await interaction.followUp({
         embeds: [
           new EmbedBuilder()
             .setTitle("Error")
-            .setDescription(
-              "An error occured running the command\n```" + (error as Error).stack + "```",
-            )
+            .setDescription("An error occured running the command\n```" + (error as Error).stack + "```")
             .setColor(this.bot.config.colours.error),
         ],
       });

@@ -3,8 +3,11 @@ const config: HibikiConfig = {
   defaultLocale: "en-GB",
   clientOptions: {},
   githubToken: "",
-  guildId: "",
-  forumId: "",
+  githubManagerConfig: {
+    guildId: "",
+    forumId: "",
+    repoString: "",
+  },
 
   colours: {
     primary: 0x64_8f_ff,
